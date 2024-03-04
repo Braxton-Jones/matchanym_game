@@ -40,31 +40,15 @@ export default function LandingPage() {
         
         <Card className="bg-nymPurple2 border-0 font-montserrat w-full">
         <CardHeader>
-          <CardTitle className="font-montserrat font-black text-nymText tracking-wide">Get Notified</CardTitle>
+          <CardTitle className="font-montserrat font-black text-nymText tracking-wide">Coming Soon!</CardTitle>
           <CardDescription className="font-cabin text-nymText">
-            Sign up to be notified when Matchanym is read to play.
+            Matchanym will be available soon.
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form className="flex flex-col gap-3">
-            <label htmlFor="email" className="font-montserrat text-nymText font-black tracking-wide">
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder=""
-              className="rounded-md p-2 bg-nymText text-nymBackground font-semibold font-cabin tracking-wide focus:ring-nymPurple1 focus:border-nymPurple1 transition-all duration-300 ease-in-out"
-
-            />
-            <button
-              type="submit"
-              className="bg-nymPurple1 text-nymText rounded-md p-2 hover:scale-105 transition-all duration-300 ease-in-out font-montserrat font-black tracking-wide"
-            >
-              Submit
-            </button>
-          </form>
+        <p className="font-cabin text-nymText">
+          Follow me on Twitter/X to stay updated on the progress of Matchanym.<Link href={"https://twitter.com/brxjonesdev"} className="bg-nymPurple1 p-1 rounded-sm hover:bg-nymBackground">@brxjonesdev</Link>
+        </p>
         </CardContent>
       </Card>
       </section>
