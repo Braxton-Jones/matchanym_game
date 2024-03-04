@@ -42,7 +42,7 @@ export default function LandingPage() {
         <CardHeader>
           <CardTitle className="font-montserrat font-black text-nymText tracking-wide">Get Notified</CardTitle>
           <CardDescription className="font-cabin text-nymText">
-            Sign up to be notified when Matchanym is ready to play.
+            Sign up to be notified when Matchanym is read to play.
           </CardDescription>
         </CardHeader>
         <CardContent>
