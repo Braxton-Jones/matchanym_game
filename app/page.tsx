@@ -37,20 +37,20 @@ export default function LandingPage() {
             {`You'll be given 5 words a day. Each word you will have 1 minute and 30 seconds to match as many synonyms as you can. The more you match, the more points you get. The more points you get, the more you can brag to your friends on the leaderboard.`}
           </p>
         </div>
+        <div>
+          <h3 className="font-montserrat text-lg font-black text-nymText tracking-wide">{`Why Matchanym?`}</h3>
+          <p className="text-nymText leading-relaxed font-cabin tracking-wide">
+            {`Matchanym is a fun way to expand your vocabulary and challenge your brain. It's a great way to learn new words and their synonyms. It's also a great way to compete with your friends and see who has the best vocabulary.`}
+          </p>
+        </div>
+        <div>
+          <h3 className="font-montserrat text-lg font-black text-nymText tracking-wide">{`When can I play?`}</h3>
+          <p className="text-nymText leading-relaxed font-cabin tracking-wide">
+            {`Matchanym is currently in development. Once it's ready, you'll be able to play it on your phone, tablet, or computer.`}
+          </p>
+        </div>
         
-        <Card className="bg-nymPurple2 border-0 font-montserrat w-full">
-        <CardHeader>
-          <CardTitle className="font-montserrat font-black text-nymText tracking-wide">Coming Soon!</CardTitle>
-          <CardDescription className="font-cabin text-nymText">
-            Matchanym will be available soon.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-        <p className="font-cabin text-nymText">
-          {`Follow me on Twitter/X to stay updated on the progress of Matchanym.`}<Link href={"https://twitter.com/brxjonesdev"} className="bg-nymPurple1 p-1 rounded-sm hover:bg-nymBackground">@brxjonesdev</Link>
-        </p>
-        </CardContent>
-      </Card>
+        
       </section>
       
       </div>
