@@ -1,21 +1,29 @@
 import type { Metadata } from "next";
-import {Montserrat , Cabin} from 'next/font/google'
+import { Montserrat, Cabin } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 export const montserrat = Montserrat({
-  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   subsets: ["latin"],
   display: "swap",
-  variable: '--montserrat'
+  variable: "--montserrat",
 });
 
 export const cabin = Cabin({
-  weight: ["400","500","600","700"],
+  weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
   display: "swap",
-  variable: '--cabin'
+  variable: "--cabin",
 });
-
 
 export const metadata: Metadata = {
   title: "Matchanym",
@@ -32,7 +40,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${montserrat.variable} ${cabin.variable} `}>
-      <body>{children}</body>
+      <body>
+        <main className="bg-nymBackground flex items-center flex-col font-montserrat px-3 py-6 min-h-screen gap-10 ">
+          <header>
+            <Link href="/">
+              <h4 className="text-nymText font-black text-xl hover:text-nymPurple1 transition-all ease-in-out">Matchanym</h4>
+            </Link>
+          </header>
+          
+          {children}
+        </main>
+      </body>
     </html>
   );
 }
