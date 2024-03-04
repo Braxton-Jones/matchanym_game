@@ -26,15 +26,15 @@ export default function LandingPage() {
         <div>
           <h3 className="font-montserrat text-lg font-black text-nymText tracking-wide">Introducing Matchanym:</h3>
           <p className="text-nymText leading-relaxed font-cabin tracking-wide">
-            Matchanym is a word game that challenges you to match words with
+            {`Matchanym is a word game that challenges you to match words with
             their synonyms. It's a fun way to expand your vocabulary and
-            challenge your brain. It's currently in development, but you can check out the progress here <Link href={"https://twitter.com/brxjonesdev"} className="bg-nymPurple1 p-1 rounded-sm hover:bg-nymPurple2">@brxjonesdev</Link>
+            challenge your brain. It's currently in development, but you can check out the progress here`} <Link href={"https://twitter.com/brxjonesdev"} className="bg-nymPurple1 p-1 rounded-sm hover:bg-nymPurple2">@brxjonesdev</Link>
           </p>
         </div>
         <div>
           <h3 className="font-montserrat text-lg font-black text-nymText tracking-wide">{`How to Play (Tentative)`}:</h3>
           <p className="text-nymText leading-relaxed font-cabin tracking-wide">
-            You'll be given 5 words a day. Each word you will have 1 minute and 30 seconds to match as many synonyms as you can. The more you match, the more points you get. The more points you get, the more you can brag to your friends on the leaderboard.
+            {`You'll be given 5 words a day. Each word you will have 1 minute and 30 seconds to match as many synonyms as you can. The more you match, the more points you get. The more points you get, the more you can brag to your friends on the leaderboard.`}
           </p>
         </div>
         
@@ -47,7 +47,7 @@ export default function LandingPage() {
         </CardHeader>
         <CardContent>
         <p className="font-cabin text-nymText">
-          Follow me on Twitter/X to stay updated on the progress of Matchanym.<Link href={"https://twitter.com/brxjonesdev"} className="bg-nymPurple1 p-1 rounded-sm hover:bg-nymBackground">@brxjonesdev</Link>
+          {`Follow me on Twitter/X to stay updated on the progress of Matchanym.`}<Link href={"https://twitter.com/brxjonesdev"} className="bg-nymPurple1 p-1 rounded-sm hover:bg-nymBackground">@brxjonesdev</Link>
         </p>
         </CardContent>
       </Card>
