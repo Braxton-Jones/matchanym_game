@@ -1,6 +1,21 @@
 import React from "react";
 import { redirect } from "next/navigation";
 import { createClient } from "@/utils/supabase/server";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { Card, CardHeader } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
+import { Input } from "@/components/ui/input";
+import  Image from "next/image";
+import leaderboard from "@/public/ranking.png";
+
+
 
 {
   /*
@@ -23,9 +38,65 @@ export default async function Gameboard() {
   const supabase = createClient();
 
   const { data, error } = await supabase.auth.getUser();
-  if (error || !data?.user) {
-    redirect("/login");
-  }
+  // if (error || !data?.user) {
+  //   redirect("/login");
+  // }
 
-  return <div>Gameboard</div>;
+  return (
+    <section className="font-montserrat w-full text-nymText flex flex-col min-h-full flex-1 transition-all ease-in-out">
+      <header className="flex items-center gap-6 pb-6 w-full justify-between">
+        <h1 className="font-black text-lg">Welcome back, Player</h1>
+        <nav>
+          <ul className="flex gap-3"> 
+            <li>
+              <Button asChild variant="outline" className="p-2 text-sm font-montserrat font-black text-nymText bg-transparent hover:bg-nymPurple1 hover:border-nymBackground">
+                <Link href="/leaderboard"><Image src={leaderboard} width={15} height={15} className="invert hover:scale-105" alt="leaderboard icon"/></Link>
+              </Button>
+            </li>
+            
+            <li>
+            <Button asChild variant="outline" className="p-2 text-xs font-montserrat font-black  text-nymText tracking-wide  hover:text-nymBackground bg-transparent hover:bg-nymPurple1 hover:border-nymBackground">
+              <Link href="/logout">Logout</Link>
+              </Button>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <section className="border-nymText border-2 rounded-md p-4 transition-all ease-in-out">
+        <div>
+          <p className="font-cabin mb-2">{`Today's word is...`}</p>
+          <div className="flex gap-2 flex-col">
+            <h2 className="font-black text-2xl">{`Langauge - `}<span className="font-cabin italic">{`noun`}</span></h2>
+            <div>
+              <Accordion type="single" collapsible>
+                <AccordionItem value="Context">
+                  <AccordionTrigger>
+                    <h3 className="font-black text-xl">Context :</h3>
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <p className="font-cabin">The method of human communication, either spoken or written, consisting of the use of words in a structured and conventional way.</p>
+                  </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+            </div>
+            
+
+          </div>
+          <Separator className="my-4" />
+          <p className="font-cabin">There are <span className="font-black">{'15'}</span> possible synonyms today.</p>
+        </div>
+      </section>
+      <footer className="mt-auto">
+      <section>
+        <Input type="text" placeholder="Enter here." className="font-cabin text-nymBackground bg-nymText"/>
+        <div>
+          
+        </div>
+      </section>
+      </footer>
+     
+
+
+    </section>
+  );
 }
