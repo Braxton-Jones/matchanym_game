@@ -15,8 +15,9 @@ import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import leaderboard from "@/public/ranking.png";
 import Keyboard from "@/components/keyboard";
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
 import Tutorial from "@/components/tutorial";
+import Leaderboard from "@/components/ui/leaderboard";
 
 {
   /*
@@ -35,9 +36,8 @@ import Tutorial from "@/components/tutorial";
  */
 }
 
-
 export default function Gameboard() {
-let isGameInProgress = true;
+  let isGameInProgress = true;
   // const supabase = createClient();
   let player = "Player";
   let time = "2:00";
@@ -67,50 +67,21 @@ let isGameInProgress = true;
       "phraseology",
       "terminology",
       "parlance",
-      "communication"
-    ]
-  }
-  
+      "communication",
+    ],
+  };
 
   return (
     <section className="font-montserrat w-full text-nymText flex flex-col min-h-full flex-1 transition-all ease-in-out max-w-xl">
       <header className="flex items-center gap-6 pb-3 w-full justify-between">
         <h1 className="font-black text-lg">
-          {isGameInProgress
-            ? <span className="bg-nymPurple1 py-2 px-3 rounded-sm text-sm">{`Time Remaining - ${time}`}</span>
-            : `Welcome Back, ${player}`}{" "}
+          {isGameInProgress ? (
+            <span className="bg-nymPurple1 py-2 px-3 rounded-sm text-sm">{`Time Remaining - ${time}`}</span>
+          ) : (
+            `Welcome Back, ${player}`
+          )}{" "}
         </h1>
-        <nav>
-          <ul className="flex gap-3">
-            <li>
-              <Button
-                asChild
-                variant="outline"
-                className="p-2 text-sm font-montserrat font-black text-nymText bg-transparent hover:bg-nymPurple1 hover:border-nymBackground"
-              >
-                <Link href="/leaderboard">
-                  <Image
-                    src={leaderboard}
-                    width={15}
-                    height={15}
-                    className="invert hover:scale-105"
-                    alt="leaderboard icon"
-                  />
-                </Link>
-              </Button>
-            </li>
-
-            <li>
-              <Button
-                asChild
-                variant="outline"
-                className="p-2 text-xs font-montserrat font-black  text-nymText tracking-wide  hover:text-nymBackground bg-transparent hover:bg-nymPurple1 hover:border-nymBackground"
-              >
-                <Link href="/logout">Logout</Link>
-              </Button>
-            </li>
-          </ul>
-        </nav>
+        <Leaderboard/>
       </header>
       <section className="border-nymText border-2 rounded-md transition-all ease-in-out">
         {isGameInProgress ? (
@@ -128,9 +99,7 @@ let isGameInProgress = true;
                       <h3 className="font-black text-xl">Context :</h3>
                     </AccordionTrigger>
                     <AccordionContent>
-                      <p className="font-cabin">
-                        {word.context_sentence}
-                      </p>
+                      <p className="font-cabin">{word.context_sentence}</p>
                     </AccordionContent>
                   </AccordionItem>
                 </Accordion>
@@ -138,8 +107,9 @@ let isGameInProgress = true;
             </div>
             <Separator className="my-4" />
             <p className="font-cabin">
-              There are <span className="font-black">{word.synonyms.length}</span> possible
-              synonyms today.
+              There are{" "}
+              <span className="font-black">{word.synonyms.length}</span>{" "}
+              possible synonyms today.
             </p>
           </div>
         ) : (
@@ -153,7 +123,6 @@ let isGameInProgress = true;
                 Ready to Play?
               </p>
             </Button>
-            
           </div>
         )}
       </section>

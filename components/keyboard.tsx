@@ -1,17 +1,23 @@
-'use client';
+"use client";
 import React, { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { set } from "react-hook-form";
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
 
-export default function Keyboard({ isGameInProgress, todaysWord }: { isGameInProgress: boolean, todaysWord: any}) {
+export default function Keyboard({
+  isGameInProgress,
+  todaysWord,
+}: {
+  isGameInProgress: boolean;
+  todaysWord: any;
+}) {
   const [input, setInput] = useState("");
   const { root, context_sentence, synonyms } = todaysWord;
   useEffect(() => {
-    const handleKeyDown = (event: { key: any; }) => {
+    const handleKeyDown = (event: { key: any }) => {
       const keyPressed = event.key;
-  
+
       if (/^[a-zA-Z]$/.test(keyPressed)) {
         setInput(input + keyPressed);
       }
@@ -21,21 +27,19 @@ export default function Keyboard({ isGameInProgress, todaysWord }: { isGameInPro
       }
 
       if (keyPressed === "Enter") {
-        handleEnter()
+        handleEnter();
       }
       if (keyPressed === " ") {
         setInput(input + " ");
       }
     };
-  
-    window.addEventListener('keydown', handleKeyDown);
+
+    window.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener("keydown", handleKeyDown);
     };
   }, [input]);
-  
-
 
   const keyboard = {
     letters: [
@@ -49,19 +53,16 @@ export default function Keyboard({ isGameInProgress, todaysWord }: { isGameInPro
   function handleKeyboardClick(e: React.MouseEvent<HTMLButtonElement>) {
     console.log(e.currentTarget.value, input);
     const value = e.currentTarget.value;
-  
+
     if (value === "<") {
       setInput(input.slice(0, -1));
-    } 
-    else if (value === "Enter") {
-      handleEnter()
-    } 
-    else {
+    } else if (value === "Enter") {
+      handleEnter();
+    } else {
       if (input.length > 0) {
         setInput(input + value.toLocaleLowerCase());
-      } else{
+      } else {
         setInput(input + value);
-      
       }
     }
   }
@@ -70,15 +71,15 @@ export default function Keyboard({ isGameInProgress, todaysWord }: { isGameInPro
     // Check if input is a string with a length greater than 0
     // Check if synonyms includes the input, if it does, add 5 point, 30 seconds to the timer and clear the input.
     // If synonyms does not include the input, throw an error animation.
-
   }
-  
 
   return (
     <section>
       <Input
         type="text"
-        placeholder={isGameInProgress ? "Enter here." : `Press 'Play' to start.`}
+        placeholder={
+          isGameInProgress ? "Enter here." : `Press 'Play' to start.`
+        }
         className="font-cabin tracking-wider"
         disabled={!isGameInProgress}
         value={input}
@@ -86,7 +87,10 @@ export default function Keyboard({ isGameInProgress, todaysWord }: { isGameInPro
       <div className="mt-3">
         <div className="w-full flex flex-col gap-2">
           {keyboard.letters.map((row, i) => (
-            <div key={i} className="text-center w-full flex justify-center gap-2">
+            <div
+              key={i}
+              className="text-center w-full flex justify-center gap-2"
+            >
               {row.map((letter, j) => (
                 <button
                   key={j}
