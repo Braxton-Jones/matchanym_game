@@ -18,6 +18,9 @@ import Keyboard from "@/components/keyboard";
 import { motion } from "framer-motion";
 import Tutorial from "@/components/tutorial";
 import Leaderboard from "@/components/ui/leaderboard";
+import Timer from "@/components/timer";
+import GameStart from "@/components/gamestart";
+import TodaysWord from "@/components/todaysword";
 
 {
   /*
@@ -36,16 +39,37 @@ import Leaderboard from "@/components/ui/leaderboard";
  */
 }
 
+{ /*
+  How state is managed in the gameboard page:
+  We are getting the word from the API and passing it down to the children components.
+  We are making a Zustand store to manage the state of the game.
+  State being managed:
+  - isGameInProgress
+  - timer
+  - synonyms
+  - score
+  - matchedSynonyms
+*/}
+
+export type Word = {
+  root: string;
+  part_of_speech: string;
+  context_sentence: string;
+  synonyms: string[];
+  
+}
+
 export default function Gameboard() {
   let isGameInProgress = true;
   // const supabase = createClient();
   let player = "Player";
-  let time = "2:00";
 
   // const { data, error } = await supabase.auth.getUser();
   // if (error || !data?.user) {
   //   redirect("/login");
   // }
+  
+
   const word = {
     root: "Language",
     part_of_speech: "noun",
@@ -76,59 +100,26 @@ export default function Gameboard() {
       <header className="flex items-center gap-6 pb-3 w-full justify-between">
         <h1 className="font-black text-lg">
           {isGameInProgress ? (
-            <span className="bg-nymPurple1 py-2 px-3 rounded-sm text-sm">{`Time Remaining - ${time}`}</span>
+            <Timer/>
           ) : (
             `Welcome Back, ${player}`
           )}{" "}
         </h1>
         <Leaderboard/>
       </header>
+      {/* Might need to make this an comp. */}
       <section className="border-nymText border-2 rounded-md transition-all ease-in-out">
         {isGameInProgress ? (
-          <div className="p-4">
-            <p className="font-cabin mb-2">{`Today's word is...`}</p>
-            <div className="flex gap-2 flex-col">
-              <h2 className="font-black text-xl">
-                {`${word.root} - `}
-                <span className="font-cabin italic">{word.part_of_speech}</span>
-              </h2>
-              <div>
-                <Accordion type="single" collapsible>
-                  <AccordionItem value="Context">
-                    <AccordionTrigger>
-                      <h3 className="font-black text-xl">Context :</h3>
-                    </AccordionTrigger>
-                    <AccordionContent>
-                      <p className="font-cabin">{word.context_sentence}</p>
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion>
-              </div>
-            </div>
-            <Separator className="my-4" />
-            <p className="font-cabin">
-              There are{" "}
-              <span className="font-black">{word.synonyms.length}</span>{" "}
-              possible synonyms today.
-            </p>
-          </div>
+          <TodaysWord 
+          word={word}
+            /> 
         ) : (
-          <div className="bg-transparent text-center p-1 flex gap-2">
-            <Tutorial />
-            <Button
-              type="button"
-              className="w-full h-full bg-transparent hover:bg-nymText hover:text-nymBackground border-2 border-nymText transition-all ease-in-out"
-            >
-              <p className="font-black text-lg font-montserrat p-1 ">
-                Ready to Play?
-              </p>
-            </Button>
-          </div>
+          <GameStart />         
         )}
       </section>
       <footer className="mt-auto">
         <section>
-          <Keyboard isGameInProgress={isGameInProgress} todaysWord={word} />
+          <Keyboard isGameInProgress={isGameInProgress} word={word} />
         </section>
       </footer>
     </section>
