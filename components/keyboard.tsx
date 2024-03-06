@@ -6,9 +6,10 @@ import { set } from "react-hook-form";
 import { motion } from "framer-motion";
 import { Word } from '../app/gameboard/page'
 
-export default function Keyboard({word, isGameInProgress}: {word: Word, isGameInProgress: boolean}) {
+export default function Keyboard({word}: {word: Word}) {
   const [input, setInput] = useState("");
   const { root, context_sentence, synonyms } = word;
+  const isGameInProgress = true;
   useEffect(() => {
     const handleKeyDown = (event: { key: any }) => {
       const keyPressed = event.key;

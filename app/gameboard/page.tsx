@@ -21,6 +21,7 @@ import Leaderboard from "@/components/ui/leaderboard";
 import Timer from "@/components/timer";
 import GameStart from "@/components/gamestart";
 import TodaysWord from "@/components/todaysword";
+import GameContent from "@/components/gamecontent";
 
 {
   /*
@@ -49,6 +50,9 @@ import TodaysWord from "@/components/todaysword";
   - synonyms
   - score
   - matchedSynonyms
+
+  We need to set up a Zustand store to manage the state of the game.
+  We also need to implement the functions for the timer
 */}
 
 export type Word = {
@@ -108,18 +112,11 @@ export default function Gameboard() {
         <Leaderboard/>
       </header>
       {/* Might need to make this an comp. */}
-      <section className="border-nymText border-2 rounded-md transition-all ease-in-out">
-        {isGameInProgress ? (
-          <TodaysWord 
-          word={word}
-            /> 
-        ) : (
-          <GameStart />         
-        )}
-      </section>
+      <GameContent word={word}/>
+      
       <footer className="mt-auto">
         <section>
-          <Keyboard isGameInProgress={isGameInProgress} word={word} />
+          <Keyboard word={word} />
         </section>
       </footer>
     </section>
