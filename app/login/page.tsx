@@ -12,14 +12,16 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import AuthForm from "@/components/authform";
+import { Separator } from "@/components/ui/separator";
 
 export default function LoginPage() {
   return (
     <section className="w-full flex-1 mt-15 flex items-center justify-center">
-      <div className="w-full max-w-2xl">
+      <div className="w-full max-w-xl">
         {" "}
         <Tabs defaultValue="login">
-          <TabsList className="grid w-full grid-cols-2">
+          <TabsList className="grid w-full grid-cols-2 font-cabin">
             <TabsTrigger value="login" className="font-bold tracking-wide">
               Login
             </TabsTrigger>
@@ -33,20 +35,10 @@ export default function LoginPage() {
                 <CardTitle className="font-black tracking-wide ">
                   Login
                 </CardTitle>
-                <CardDescription className="font-cabin text-md text-inherit">{`Let's get you back in here!`}</CardDescription>
-                <CardContent>
-                  <form>
-                    <Label htmlFor="email">Email:</Label>
-                    <Input id="email" name="email" type="email" required />
-                    <Label htmlFor="password">Password:</Label>
-                    <Input
-                      id="password"
-                      name="password"
-                      type="password"
-                      required
-                    />
-                    <Button formAction={login}>Log in</Button>
-                  </form>
+                <CardDescription className="font-cabin text-md text-inherit pb-2">{`Let's get you back in here!`}</CardDescription>
+                <Separator />
+                <CardContent className="p-0">
+                  <AuthForm type="login" />
                 </CardContent>
               </CardHeader>
             </Card>
@@ -57,8 +49,11 @@ export default function LoginPage() {
                 <CardTitle className="font-black tracking-wide">
                   Sign up
                 </CardTitle>
-                <CardDescription className="font-cabin text-md text-inherit">{`Welcome In! Create an account here.`}</CardDescription>
-                <CardContent></CardContent>
+                <CardDescription className="font-cabin text-md text-inherit pb-2">{`Welcome In! Create an account here.`}</CardDescription>
+                <Separator />
+                <CardContent className="p-0">
+                  <AuthForm type="signup" />
+                </CardContent>
               </CardHeader>
             </Card>
           </TabsContent>

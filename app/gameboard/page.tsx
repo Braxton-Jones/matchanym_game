@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { redirect } from "next/navigation";
 import { createClient } from "@/utils/supabase/server";
@@ -14,6 +15,8 @@ import {
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import leaderboard from "@/public/ranking.png";
+import Keyboard from "@/components/keyboard";
+import { Play } from "next/font/google";
 
 {
   /*
@@ -32,24 +35,24 @@ import leaderboard from "@/public/ranking.png";
  */
 }
 
-export default async function Gameboard() {
-  const supabase = createClient();
-  let isGameInProgress = false;
+export default function Gameboard() {
+  // const supabase = createClient();
+  let isGameInProgress = true;
   let player = "Player";
   let time = "2:00";
 
-  const { data, error } = await supabase.auth.getUser();
+  // const { data, error } = await supabase.auth.getUser();
   // if (error || !data?.user) {
   //   redirect("/login");
   // }
 
   return (
-    <section className="font-montserrat w-full text-nymText flex flex-col min-h-full flex-1 transition-all ease-in-out max-w-2xl">
-      <header className="flex items-center gap-6 pb-6 w-full justify-between">
+    <section className="font-montserrat w-full text-nymText flex flex-col min-h-full flex-1 transition-all ease-in-out max-w-xl">
+      <header className="flex items-center gap-6 pb-3 w-full justify-between">
         <h1 className="font-black text-lg">
           {isGameInProgress
-            ? `${`Time Remaining - `}${time}`
-            : `${`Welcome Back, `}${player}`}{" "}
+            ? <span className="bg-nymPurple1 py-2 px-3 rounded-sm">{`Time Remaining - ${time}`}</span>
+            : `Welcome Back, ${player}`}{" "}
         </h1>
         {/* Add Timer here */}
         <nav>
@@ -89,7 +92,7 @@ export default async function Gameboard() {
           <div className="p-4">
             <p className="font-cabin mb-2">{`Today's word is...`}</p>
             <div className="flex gap-2 flex-col">
-              <h2 className="font-black text-2xl">
+              <h2 className="font-black text-xl">
                 {`Langauge - `}
                 <span className="font-cabin italic">{`noun`}</span>
               </h2>
@@ -117,12 +120,12 @@ export default async function Gameboard() {
             </p>
           </div>
         ) : (
-          <div className="bg-nymPurple1 text-center">
+          <div className="bg-transparent text-center">
             <Button
               type="button"
-              className="w-full h-full bg-nymPurple2 hover:bg-nymPurple1"
+              className="w-full h-full bg-transparent hover:bg-nymPurple1 border-nymText border"
             >
-              <p className="font-black text-3xl font-montserrat p-6 ">
+              <p className="font-black text-2xl font-montserrat p-3 ">
                 Ready to Play?
               </p>
             </Button>
@@ -133,10 +136,11 @@ export default async function Gameboard() {
         <section>
           <Input
             type="text"
-            placeholder="Enter here."
-            className="font-cabin text-nymBackground bg-nymText"
+            placeholder={isGameInProgress ? "Enter here." :  `Press "Play" to start.`}
+            className="font-cabin"
+            disabled={!isGameInProgress}
           />
-          <div></div>
+          <Keyboard />
         </section>
       </footer>
     </section>
