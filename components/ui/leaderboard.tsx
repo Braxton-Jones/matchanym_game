@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import { Button } from "./button";
 import Image from "next/image";
@@ -33,10 +32,10 @@ export default function Leaderboard() {
           <Button
             asChild
             variant="outline"
-            className="p-2 text-sm font-montserrat font-black text-nymText bg-transparent hover:bg-nymPurple1 hover:border-nymBackground flex gap-3"
+            className="text-sm font-montserrat font-black text-nymText bg-transparent hover:bg-nymPurple1 hover:border-nymBackground flex gap-3"
           >
             <div>
-              <p className="font-black text-sm text-nymText">Leaderboard</p>
+              <p className="font-black text-sm text-nymText ">Leaderboard</p>
               <Image
                 src={leaderboard}
                 width={15}

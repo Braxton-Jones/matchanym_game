@@ -10,6 +10,8 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
+
+
 export default function LandingPage() {
   return (
     <div className="w-full max-w-2xl flex items-center flex-col gap-6">
@@ -74,5 +76,6 @@ export default function LandingPage() {
         </p>
       </footer>
     </div>
+    
   );
 }

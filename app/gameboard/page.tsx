@@ -18,10 +18,11 @@ import Keyboard from "@/components/keyboard";
 import { motion } from "framer-motion";
 import Tutorial from "@/components/tutorial";
 import Leaderboard from "@/components/ui/leaderboard";
-import Timer from "@/components/timer";
 import GameStart from "@/components/gamestart";
 import TodaysWord from "@/components/todaysword";
 import GameContent from "@/components/gamecontent";
+import { GameStoreProvider } from "@/lib/store-provider";
+import Timer from "@/components/timer";
 
 {
   /*
@@ -40,22 +41,6 @@ import GameContent from "@/components/gamecontent";
  */
 }
 
-{
-  /*
-  How state is managed in the gameboard page:
-  We are getting the word from the API and passing it down to the children components.
-  We are making a Zustand store to manage the state of the game.
-  State being managed:
-  - isGameInProgress
-  - timer
-  - synonyms
-  - score
-  - matchedSynonyms
-
-  We need to set up a Zustand store to manage the state of the game.
-  We also need to implement the functions for the timer
-*/
-}
 
 export type Word = {
   root: string;
@@ -64,8 +49,35 @@ export type Word = {
   synonyms: string[];
 };
 
+function getWord(): Word {
+  return {
+    root: "Language",
+    part_of_speech: "noun",
+    context_sentence: `The method of human communication, either spoken or
+    written, consisting of the use of words in a structured
+    and conventional way.`,
+    synonyms: [
+      "tongue",
+      "vernacular",
+      "dialect",
+      "speech",
+      "communication",
+      "lingo",
+      "idiom",
+      "vocabulary",
+      "lexicon",
+      "jargon",
+      "expression",
+      "phraseology",
+      "terminology",
+      "parlance",
+      "communication",
+    ],
+  }
+}
+
 export default function Gameboard() {
-  let isGameInProgress = true;
+  let isGameInProgress = false;
   // const supabase = createClient();
   let player = "Player";
 
@@ -99,12 +111,17 @@ export default function Gameboard() {
     ],
   };
 
+  const wordMock = getWord()
+  // We get the word from the server, which includes the word, its context, and its synonyms.
+  // We are also getting the player's name from the server.
+  // We are passing the word and the player's name to the GameContent component.
+  // We are also passing the word to the Keyboard component.
+
   return (
+    <GameStoreProvider>
     <section className="font-montserrat w-full text-nymText flex flex-col min-h-full flex-1 transition-all ease-in-out max-w-xl">
       <header className="flex items-center gap-6 pb-3 w-full justify-between">
-        <h1 className="font-black text-lg">
-          {isGameInProgress ? <Timer /> : `Welcome Back, ${player}`}{" "}
-        </h1>
+        <Timer name={player}/>
         <Leaderboard />
       </header>
       {/* Might need to make this an comp. */}
@@ -116,5 +133,6 @@ export default function Gameboard() {
         </section>
       </footer>
     </section>
+    </GameStoreProvider>
   );
 }

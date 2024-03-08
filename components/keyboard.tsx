@@ -5,11 +5,28 @@ import { Input } from "./ui/input";
 import { set } from "react-hook-form";
 import { motion } from "framer-motion";
 import { Word } from "../app/gameboard/page";
+import { useGameStore } from "@/lib/store-provider";
+import GameStart from "./gamestart";
+import { toast, useToast } from "@/components/ui/use-toast"
 
+
+
+// word is passed as a prop
+// from word we destructure the synonyms
+// when a user presses enter it does the following:
+// - check if input is a string with a length greater than 0
+// - check if synonyms includes the input, if it does:
+//    - add 5 points to the score
+//    - add 30 seconds to the timer
+//    - update the matchedSynonyms state
+//    - clear the input
+// - if synonyms does not include the input, throw an error animation
 export default function Keyboard({ word }: { word: Word }) {
   const [input, setInput] = useState("");
   const { root, context_sentence, synonyms } = word;
-  const isGameInProgress = true;
+  const isGameInProgress = useGameStore((state) => state.isGameInProgress);
+  const matchedSynonyms = useGameStore((state) => state.matchedSynonyms);
+  const addMatchedSynonym = useGameStore((state) => state.addMatchedSynonym);
   useEffect(() => {
     const handleKeyDown = (event: { key: any }) => {
       const keyPressed = event.key;
@@ -64,12 +81,30 @@ export default function Keyboard({ word }: { word: Word }) {
   }
 
   function handleEnter() {
-    // Check if input is a string with a length greater than 0
-    // Check if synonyms includes the input, if it does, add 5 point, 30 seconds to the timer and clear the input.
-    // If synonyms does not include the input, throw an error animation.
+    // update for duplicate synonyms and adding time
+    if (input.length > 0) {
+      if (synonyms.includes(input.toLowerCase())) {
+        toast({
+          title: "Correct!",
+          description: "You found a synonym!",
+        });
+        addMatchedSynonym(input);
+        setInput("");
+      } else {
+        toast({
+          title: "Incorrect!",
+          description: "That's not a synonym.",
+          variant: "destructive",
+        });
+        setInput("");
+      }
+    }
+    
   }
 
-  return (
+  return (<>
+  {/* Seperate the button into its own comp for gamestate */}
+  {!isGameInProgress ? (<GameStart/>) : (null)}
     <section>
       <Input
         type="text"
@@ -79,6 +114,7 @@ export default function Keyboard({ word }: { word: Word }) {
         className="font-cabin tracking-wider"
         disabled={!isGameInProgress}
         value={input}
+        onChange={(e) => {return null}}
       />
       <div className="mt-3">
         <div className="w-full flex flex-col gap-2">
@@ -103,5 +139,5 @@ export default function Keyboard({ word }: { word: Word }) {
         </div>
       </div>
     </section>
-  );
+  </>);
 }

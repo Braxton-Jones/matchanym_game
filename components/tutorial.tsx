@@ -12,15 +12,15 @@ import {
 export default function Tutorial() {
   return (
     <Dialog>
-      <DialogTrigger className="font-cabin bg-nymPurple1 w-full p-1 text-lg rounded-md hover:bg-nymPurple2">
+      <DialogTrigger className="w-full p-5 text-lg rounded-md hover:bg-nymPurple1 font-black">
         How to Play?
       </DialogTrigger>
       <DialogContent className="bg-nymBackground rounded-xl">
         <DialogHeader>
-          <DialogTitle className="text-nymText text-2xl">
+          <DialogTitle className="text-nymText text-2xl font-black tracking-wider">
             How to Play
           </DialogTitle>
-          <DialogDescription className="font-cabin text-nymText pb-2">
+          <DialogDescription className="font-cabin text-nymText p-0">
             <ul className="flex flex-col gap-2">
               <li className="flex flex-col items-start text-left">
                 <strong className="text-lg text-nymPurple1">
