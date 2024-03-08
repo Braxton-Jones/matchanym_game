@@ -4,9 +4,9 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { set } from "react-hook-form";
 import { motion } from "framer-motion";
-import { Word } from '../app/gameboard/page'
+import { Word } from "../app/gameboard/page";
 
-export default function Keyboard({word}: {word: Word}) {
+export default function Keyboard({ word }: { word: Word }) {
   const [input, setInput] = useState("");
   const { root, context_sentence, synonyms } = word;
   const isGameInProgress = true;

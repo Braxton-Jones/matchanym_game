@@ -40,7 +40,8 @@ import GameContent from "@/components/gamecontent";
  */
 }
 
-{ /*
+{
+  /*
   How state is managed in the gameboard page:
   We are getting the word from the API and passing it down to the children components.
   We are making a Zustand store to manage the state of the game.
@@ -53,15 +54,15 @@ import GameContent from "@/components/gamecontent";
 
   We need to set up a Zustand store to manage the state of the game.
   We also need to implement the functions for the timer
-*/}
+*/
+}
 
 export type Word = {
   root: string;
   part_of_speech: string;
   context_sentence: string;
   synonyms: string[];
-  
-}
+};
 
 export default function Gameboard() {
   let isGameInProgress = true;
@@ -72,7 +73,6 @@ export default function Gameboard() {
   // if (error || !data?.user) {
   //   redirect("/login");
   // }
-  
 
   const word = {
     root: "Language",
@@ -103,17 +103,13 @@ export default function Gameboard() {
     <section className="font-montserrat w-full text-nymText flex flex-col min-h-full flex-1 transition-all ease-in-out max-w-xl">
       <header className="flex items-center gap-6 pb-3 w-full justify-between">
         <h1 className="font-black text-lg">
-          {isGameInProgress ? (
-            <Timer/>
-          ) : (
-            `Welcome Back, ${player}`
-          )}{" "}
+          {isGameInProgress ? <Timer /> : `Welcome Back, ${player}`}{" "}
         </h1>
-        <Leaderboard/>
+        <Leaderboard />
       </header>
       {/* Might need to make this an comp. */}
-      <GameContent word={word}/>
-      
+      <GameContent word={word} />
+
       <footer className="mt-auto">
         <section>
           <Keyboard word={word} />
