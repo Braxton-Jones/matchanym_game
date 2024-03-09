@@ -5,6 +5,7 @@ import leaderboard from "../../public/ranking.png";
 import Link from "next/link";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogHeader,
@@ -46,20 +47,23 @@ export default function Leaderboard() {
             </div>
           </Button>
         </DialogTrigger>
-        <DialogContent>
+        <DialogContent className="bg-nymBackground text-nymText">
           <DialogTitle>Leaderboard</DialogTitle>
           <DialogDescription>
             <div className="flex gap-2">
               <h2 className="font-black text-lg">Leaderboard</h2>
-              <Image
-                src={leaderboard}
-                width={15}
-                height={15}
-                className="invert"
-                alt="leaderboard icon"
-              />
             </div>
           </DialogDescription>
+          <DialogClose>
+              <Button
+                type="button"
+                className=" h-full bg-transparent hover:bg-nymText hover:text-nymBackground border-2 border-nymText transition-all ease-in-out"
+              >
+                <p className="font-black text-md font-montserrat p-1 ">
+              Close
+                </p>
+              </Button>
+          </DialogClose>
         </DialogContent>
       </Dialog>
     );
