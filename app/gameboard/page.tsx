@@ -76,15 +76,17 @@ function getWord(): Word {
   }
 }
 
-export default function Gameboard() {
+export default async function Gameboard() {
   let isGameInProgress = false;
-  // const supabase = createClient();
+  const supabase = createClient();
   let player = "Player";
 
-  // const { data, error } = await supabase.auth.getUser();
-  // if (error || !data?.user) {
-  //   redirect("/login");
-  // }
+  const { data, error } = await supabase.auth.getUser();
+  if (error || !data?.user) {
+    redirect("/login");
+  }
+
+  console.log(data?.user);
 
   const word = {
     root: "Language",
@@ -121,10 +123,9 @@ export default function Gameboard() {
     <GameStoreProvider>
     <section className="font-montserrat w-full text-nymText flex flex-col min-h-full flex-1 transition-all ease-in-out max-w-xl">
       <header className="flex items-center gap-6 pb-3 w-full justify-between">
-        <Timer name={player}/>
+        <Timer name={data?.user.email as string}/>
         <Leaderboard />
       </header>
-      {/* Might need to make this an comp. */}
       <GameContent word={word} />
 
       <footer className="mt-auto">

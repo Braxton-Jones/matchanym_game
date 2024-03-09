@@ -27,6 +27,7 @@ export default function Keyboard({ word }: { word: Word }) {
   const isGameInProgress = useGameStore((state) => state.isGameInProgress);
   const matchedSynonyms = useGameStore((state) => state.matchedSynonyms);
   const addMatchedSynonym = useGameStore((state) => state.addMatchedSynonym);
+  const {toast} = useToast();
   useEffect(() => {
     const handleKeyDown = (event: { key: any }) => {
       const keyPressed = event.key;
