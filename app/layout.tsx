@@ -40,7 +40,6 @@ export const metadata: Metadata = {
   - Update UI for tutorial and toasts
   - Implement leaderboard
   - Implement user authentication
-  - Implement user score tracking in real-time
   - Implement daily word fetching
   - Implement users can play three words a day and that is saved even on page refresh
 */}

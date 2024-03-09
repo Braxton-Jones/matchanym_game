@@ -87,6 +87,7 @@ export default function Keyboard({ word }: { word: Word }) {
         toast({
           title: "Correct!",
           description: "You found a synonym!",
+          variant: "matchanym"
         });
         addMatchedSynonym(input);
         setInput("");
