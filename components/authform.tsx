@@ -41,12 +41,23 @@ export default function AuthForm(auth: { type: string }): React.JSX.Element {
       })
       .catch((err) => {
         toast({
-          title: "Invalid login credentials",
+          title: err.message,
           description: "Please try again",  
+          variant: "destructive"
         })
       });
     } else {
-      signup(formData);
+      signup(formData)
+      .then((res) => {
+        console.log(res, "res");
+      })
+      .catch((err) => {
+        toast({
+          title: err.message,
+          description: "Please try again",  
+          variant: "destructive"
+        })
+      });
     }
   }
 
