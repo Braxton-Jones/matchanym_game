@@ -8,7 +8,6 @@ import { GameStoreProvider } from "@/lib/store-provider";
 import Timer from "@/components/timer";
 import Hint from "@/components/hint";
 
-
 export type Word = {
   root: string;
   part_of_speech: string;
@@ -23,20 +22,20 @@ function getWord(): Word {
     context_sentence: `The method of human communication, either spoken or written, consisting of the use of words in a structured and conventional way.`,
     synonyms: [
       "tongue",
-      // "vernacular",
-      // "dialect",
-      // "communication",
-      // "lingo",
-      // "vocabulary",
-      // "lexicon",
-      // "jargon",
-      // "expression",
+      "vernacular",
+      "dialect",
+      "communication",
+      "lingo",
+      "vocabulary",
+      "lexicon",
+      "jargon",
+      "expression",
     ],
-  }
+  };
 }
 
 export default async function Gameboard() {
-  const supabase = createClient()
+  const supabase = createClient();
 
   const { data, error } = await supabase.auth.getUser();
   if (error || !data?.user) {
@@ -47,19 +46,19 @@ export default async function Gameboard() {
 
   return (
     <GameStoreProvider>
-    <section className="font-montserrat w-full text-nymText flex flex-col min-h-full flex-1 transition-all ease-in-out max-w-xl">
-      <header className="flex items-center gap-6 pb-3 w-full justify-between">
-        <Timer name={data?.user.email as string}/>
-        {/* <Leaderboard /> */}
-      </header>
-      <GameContent word={word} />
+      <section className="font-montserrat w-full text-nymText flex flex-col min-h-full flex-1 transition-all ease-in-out max-w-xl">
+        <header className="flex items-center gap-6 pb-3 w-full justify-between">
+          <Timer name={data?.user.email as string} />
+          {/* <Leaderboard /> */}
+        </header>
+        <GameContent word={word} />
 
-      <footer className="mt-auto">
-        <section>
-          <Keyboard word={word} />
-        </section>
-      </footer>
-    </section>
+        <footer className="mt-auto">
+          <section>
+            <Keyboard word={word} />
+          </section>
+        </footer>
+      </section>
     </GameStoreProvider>
   );
 }

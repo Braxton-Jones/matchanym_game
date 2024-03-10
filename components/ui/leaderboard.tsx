@@ -55,14 +55,12 @@ export default function Leaderboard() {
             </div>
           </DialogDescription>
           <DialogClose>
-              <Button
-                type="button"
-                className=" h-full bg-transparent hover:bg-nymText hover:text-nymBackground border-2 border-nymText transition-all ease-in-out"
-              >
-                <p className="font-black text-md font-montserrat p-1 ">
-              Close
-                </p>
-              </Button>
+            <Button
+              type="button"
+              className=" h-full bg-transparent hover:bg-nymText hover:text-nymBackground border-2 border-nymText transition-all ease-in-out"
+            >
+              <p className="font-black text-md font-montserrat p-1 ">Close</p>
+            </Button>
           </DialogClose>
         </DialogContent>
       </Dialog>

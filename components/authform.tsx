@@ -16,9 +16,7 @@ import {
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { login, signup } from "@/app/login/actions";
-import { useToast } from "@/components/ui/use-toast"
-
-
+import { useToast } from "@/components/ui/use-toast";
 
 export default function AuthForm(auth: { type: string }): React.JSX.Element {
   const { toast } = useToast();
@@ -36,34 +34,37 @@ export default function AuthForm(auth: { type: string }): React.JSX.Element {
     formData.append("password", data.password);
     if (auth.type === "login") {
       login(formData)
-      .then((res) => {
-        console.log(res, "res");
-      })
-      .catch((err) => {
-        toast({
-          title: err.message,
-          description: "Please try again",  
-          variant: "destructive"
+        .then((res) => {
+          console.log(res, "res");
         })
-      });
+        .catch((err) => {
+          toast({
+            title: err.message,
+            description: "Please try again",
+            variant: "destructive",
+          });
+        });
     } else {
       signup(formData)
-      .then((res) => {
-        console.log(res, "res");
-      })
-      .catch((err) => {
-        toast({
-          title: err.message,
-          description: "Please try again",  
-          variant: "destructive"
+        .then((res) => {
+          console.log(res, "res");
         })
-      });
+        .catch((err) => {
+          toast({
+            title: err.message,
+            description: "Please try again",
+            variant: "destructive",
+          });
+        });
     }
   }
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-full flex flex-col gap-4">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="w-full flex flex-col gap-4"
+      >
         <FormField
           control={form.control}
           name="email"

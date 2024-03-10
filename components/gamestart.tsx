@@ -5,53 +5,28 @@ import { Button } from "./ui/button";
 import { useGameStore } from "@/lib/store-provider";
 import { set } from "zod";
 import { match } from "assert";
+import { useEffect } from "react";
 
 
 
 
-export default function GameStart() {
-  const { 
-    timer, 
-    startTimer,
-    startGame,
-    updateTimer,
-    endGame,
-    setGameOverMessage,
-    setRemainingTime,
-    matchedSynonyms
-    } = useGameStore(
-    (state) => ({ 
-      timer: state.timer, 
-      startTimer: state.startTimer,
-      updateTimer: state.updateTimer,
-      startGame: state.startGame,
-      endGame: state.endGame,
-      setGameOverMessage: state.setGameOverMessage,
-      setRemainingTime: state.setRemainingTime,
-      matchedSynonyms: state.matchedSynonyms
-    })
-  );
+export default function GameStart({ newGame }: { newGame: () => void}){
  
 
-  const newGame = () => {
-    startGame();
-    startTimer(timer);
+//   const newGame = () => {
+//     startGame();
+//     startTimer(timer);
 
-  const interval = setInterval(() => {
-    updateTimer(1);
-  }, 1000);
-  setTimeout(() => {
-    clearInterval(interval);
-    setGameOverMessage("Time's Up!");
-    endGame();
-  }, (timer + 1) * 1000);
+//   const interval = setInterval(() => {
+//     updateTimer(1);
+//   }, 1000);
+//   setTimeout(() => {
+//     clearInterval(interval);
+//     setGameOverMessage("Time's Up!");
+//     endGame();
+//   }, (timer + 1) * 1000);
+// }
 
-  if(matchedSynonyms.length === 1){
-    clearInterval(interval);
-    setGameOverMessage("You Win!");
-    endGame();
-  };
-}
   
   
   return (

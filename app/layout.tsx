@@ -10,7 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Toaster } from "@/components/ui/toaster"
+import { Toaster } from "@/components/ui/toaster";
 
 export const montserrat = Montserrat({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -34,7 +34,8 @@ export const metadata: Metadata = {
   It's currently in development, but you can check out the progress here @brxjonesdev`,
 };
 
-{/*
+{
+  /*
   Current Tasks:
   - Implement game start and end logic
   - Update UI for tutorial and toasts
@@ -42,7 +43,8 @@ export const metadata: Metadata = {
   - Implement user authentication
   - Implement daily word fetching
   - Implement users can play three words a day and that is saved even on page refresh
-*/}
+*/
+}
 
 export default function RootLayout({
   children,

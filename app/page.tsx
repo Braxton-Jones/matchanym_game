@@ -10,12 +10,9 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
-
-
 export default function LandingPage() {
   return (
     <div className="w-full max-w-2xl flex items-center flex-col gap-6">
-
       <section>
         <h1 className="text-nymText font-black text-5xl text-center px-4 w-full">
           {`Welcome to your new`}
@@ -73,10 +70,8 @@ export default function LandingPage() {
           >
             brxjonesdev
           </Link>
-      
         </p>
       </footer>
     </div>
-    
   );
 }

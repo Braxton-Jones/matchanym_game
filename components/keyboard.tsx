@@ -7,9 +7,8 @@ import { motion } from "framer-motion";
 import { Word } from "../app/gameboard/page";
 import { useGameStore } from "@/lib/store-provider";
 import GameStart from "./gamestart";
-import { toast, useToast } from "@/components/ui/use-toast"
-
-
+import { toast, useToast } from "@/components/ui/use-toast";
+import { start } from "repl";
 
 // word is passed as a prop
 // from word we destructure the synonyms
@@ -24,14 +23,37 @@ import { toast, useToast } from "@/components/ui/use-toast"
 export default function Keyboard({ word }: { word: Word }) {
   const [input, setInput] = useState("");
   const { root, context_sentence, synonyms } = word;
-  const isGameInProgress = useGameStore((state) => state.isGameInProgress);
-  const matchedSynonyms = useGameStore((state) => state.matchedSynonyms);
-  const addMatchedSynonym = useGameStore((state) => state.addMatchedSynonym);
-  const { timer, addTime } = useGameStore((state) => ({
+  const {
+    isGameInProgress,
+    addMatchedSynonym,
+    matchedSynonyms,
+    setRemainingTime,
+    timer,
+    endGame,
+    setGameOverMessage,
+    clearTimer,
+    startTimer,
+    startGame,
+    updateTimer,
+    setTimerInterval,
+    timerInterval,
+  } = useGameStore((state) => ({
+    isGameInProgress: state.isGameInProgress,
+    addMatchedSynonym: state.addMatchedSynonym,
+    matchedSynonyms: state.matchedSynonyms,
+    setRemainingTime: state.setRemainingTime,
     timer: state.timer,
-    addTime: state.addTime,
+    endGame: state.endGame,
+    setGameOverMessage: state.setGameOverMessage,
+    clearTimer: state.clearTimer,
+    startTimer: state.startTimer,
+    startGame: state.startGame,
+    updateTimer: state.updateTimer,
+    setTimerInterval: state.setTimerInterval,
+    timerInterval: state.timerInterval,
   }));
-  const {toast} = useToast();
+
+  const { toast } = useToast();
   useEffect(() => {
     const handleKeyDown = (event: { key: any }) => {
       const keyPressed = event.key;
@@ -58,6 +80,14 @@ export default function Keyboard({ word }: { word: Word }) {
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [input]);
+
+  useEffect(() => {
+    if (matchedSynonyms.length === synonyms.length) {
+      clearInterval(timerInterval);
+      setRemainingTime(timer)
+      endGame();
+    }
+  }, [matchedSynonyms]);
 
   const keyboard = {
     letters: [
@@ -92,7 +122,7 @@ export default function Keyboard({ word }: { word: Word }) {
         toast({
           title: "Correct!",
           description: "You found a synonym!",
-          variant: "matchanym"
+          variant: "matchanym",
         });
         addMatchedSynonym(input);
         setInput("");
@@ -105,45 +135,69 @@ export default function Keyboard({ word }: { word: Word }) {
         setInput("");
       }
     }
-    
   }
 
-  return (<>
-  {/* Seperate the button into its own comp for gamestate */}
-  {!isGameInProgress ? (<GameStart/>) : (null)}
-    <section>
-      <Input
-        type="text"
-        placeholder={
-          isGameInProgress ? "Enter here." : `Press 'Play' to start.`
-        }
-        className="font-cabin tracking-wider"
-        disabled={!isGameInProgress}
-        value={input}
-        onChange={(e) => {return null}}
-      />
-      <div className="mt-3">
-        <div className="w-full flex flex-col gap-2">
-          {keyboard.letters.map((row, i) => (
-            <div
-              key={i}
-              className="text-center w-full flex justify-center gap-2"
-            >
-              {row.map((letter, j) => (
-                <button
-                  key={j}
-                  className="border-2 w-full p-1 border-nymText rounded-sm"
-                  value={letter}
-                  onClick={handleKeyboardClick}
-                  disabled={!isGameInProgress}
-                >
-                  {letter}
-                </button>
-              ))}
-            </div>
-          ))}
+  // Timer logic
+  const startNewGame = (): void => {
+    startGame();
+    startTimer(240);
+    const countdownInterval = setInterval(() => {
+      updateTimer(1);
+    }, 1000);
+    setTimerInterval(countdownInterval);
+    setTimeout(() => {
+      clearInterval(countdownInterval);
+      setGameOverMessage("Time's Up!");
+      endGame();
+    }, (timer + 1) * 1000);
+  };
+
+  return (
+    <>
+      {/* Seperate the button into its own comp for gamestate */}
+      {!isGameInProgress ? (
+        <GameStart
+          newGame={() => {
+            startNewGame();
+          }}
+        />
+      ) : null}
+      <section>
+        <Input
+          type="text"
+          placeholder={
+            isGameInProgress ? "Enter here." : `Press 'Play' to start.`
+          }
+          className="font-cabin tracking-wider"
+          disabled={!isGameInProgress}
+          value={input}
+          onChange={(e) => {
+            return null;
+          }}
+        />
+        <div className="mt-3">
+          <div className="w-full flex flex-col gap-2">
+            {keyboard.letters.map((row, i) => (
+              <div
+                key={i}
+                className="text-center w-full flex justify-center gap-2"
+              >
+                {row.map((letter, j) => (
+                  <button
+                    key={j}
+                    className="border-2 w-full p-1 border-nymText rounded-sm"
+                    value={letter}
+                    onClick={handleKeyboardClick}
+                    disabled={!isGameInProgress}
+                  >
+                    {letter}
+                  </button>
+                ))}
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
-  </>);
+      </section>
+    </>
+  );
 }
