@@ -69,11 +69,11 @@ export default function LandingPage() {
           Developed with Love by{" "}
           <Link
             href="https://twitter.com/brxjonesdev"
-            className="font-cabin bg-nymPurple1 p-1 rounded-lg"
+            className="font-cabin bg-nymPurple1 rounded-lg px-3 py-1"
           >
             brxjonesdev
           </Link>
-          .
+      
         </p>
       </footer>
     </div>

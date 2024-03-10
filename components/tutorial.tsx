@@ -12,7 +12,7 @@ import {
 export default function Tutorial() {
   return (
     <Dialog>
-      <DialogTrigger className="w-full p-5 text-lg rounded-md hover:bg-nymPurple1 font-black">
+      <DialogTrigger className="w-full py-2 text-lg rounded-md hover:bg-nymPurple1 font-black">
         How to Play?
       </DialogTrigger>
       <DialogContent className="bg-nymBackground rounded-xl">

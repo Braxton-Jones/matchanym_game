@@ -6,6 +6,7 @@ import Leaderboard from "@/components/ui/leaderboard";
 import GameContent from "@/components/gamecontent";
 import { GameStoreProvider } from "@/lib/store-provider";
 import Timer from "@/components/timer";
+import Hint from "@/components/hint";
 
 
 export type Word = {
@@ -19,25 +20,17 @@ function getWord(): Word {
   return {
     root: "Language",
     part_of_speech: "noun",
-    context_sentence: `The method of human communication, either spoken or
-    written, consisting of the use of words in a structured
-    and conventional way.`,
+    context_sentence: `The method of human communication, either spoken or written, consisting of the use of words in a structured and conventional way.`,
     synonyms: [
       "tongue",
-      "vernacular",
-      "dialect",
-      "speech",
-      "communication",
-      "lingo",
-      "idiom",
-      "vocabulary",
-      "lexicon",
-      "jargon",
-      "expression",
-      "phraseology",
-      "terminology",
-      "parlance",
-      "communication",
+      // "vernacular",
+      // "dialect",
+      // "communication",
+      // "lingo",
+      // "vocabulary",
+      // "lexicon",
+      // "jargon",
+      // "expression",
     ],
   }
 }
@@ -57,7 +50,7 @@ export default async function Gameboard() {
     <section className="font-montserrat w-full text-nymText flex flex-col min-h-full flex-1 transition-all ease-in-out max-w-xl">
       <header className="flex items-center gap-6 pb-3 w-full justify-between">
         <Timer name={data?.user.email as string}/>
-        <Leaderboard />
+        {/* <Leaderboard /> */}
       </header>
       <GameContent word={word} />
 

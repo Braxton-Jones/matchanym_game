@@ -56,7 +56,7 @@ export default function RootLayout({
           <header>
             <Link href="/">
               <h4 className="text-nymText font-black text-xl hover:text-nymPurple1 transition-all ease-in-out">
-                Matchanym
+                Matchanym 🍵
               </h4>
             </Link>
           </header>

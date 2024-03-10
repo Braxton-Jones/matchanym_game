@@ -9,53 +9,59 @@ import {
 import { Separator } from "./ui/separator";
 import { Word } from "../app/gameboard/page";
 import { useGameStore } from "@/lib/store-provider";
+import { useToast } from "@/components/ui/use-toast";
+import { Button } from "./ui/button";
+import Hint from "./hint";
 
 
 // Word is passed as a prop
 // from word we destructure the root, part_of_speech, context_sentence, and synonyms
 // We need to access matchSynonyms from the store, so we can display the number of synonyms matched
 export default function TodaysWord({ word }: { word: Word }) {
+  const {toast} = useToast();
   const { root, part_of_speech, context_sentence, synonyms } = word;
   const matchedSynonyms = useGameStore((state) => state.matchedSynonyms);
+const endGame = useGameStore((state) => state.endGame);
+const setGameOverMessage = useGameStore((state) => state.setGameOverMessage);
+const setRemainingTime = useGameStore((state) => state.setRemainingTime);
+const remainingTime = useGameStore((state) => state.remainingTime);
+const timer = useGameStore((state) => state.timer);
+
+  
   return (
     <div className="p-4">
       <p className="font-cabin mb-2">{`Today's word is...`}</p>
-      <div className="flex gap-2 flex-col">
-        <h2 className="font-black text-xl">
+      <div className="flex gap-2 justify-between items-center">
+        <h2 className="font-black text-2xl">
           {`${root} - `}
           <span className="font-cabin italic">{part_of_speech}</span>
         </h2>
         <div>
-          <Accordion type="single" collapsible>
-            <AccordionItem value="Context">
-              <AccordionTrigger>
-                <h3 className="font-black text-xl">Context :</h3>
-              </AccordionTrigger>
-              <AccordionContent>
-                <p className="font-cabin">{context_sentence}</p>
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
+          <Button 
+          className="bg-nymText text-nymBackground hover:bg-nymPurple1 hover:text-nymText transition-all ease-in-out"
+          onClick={() => {
+            toast({
+              title: "Context",
+              description: context_sentence,
+            })
+          }}>Context</Button>
         </div>
       </div>
-      <Separator className="my-4" />
-      {matchedSynonyms ? (<p className="font-cabin">
-      {matchedSynonyms.length === 0 ? 
-      "GLHF! You haven't found any synonyms yet."
-      :
-      `You've found ${matchedSynonyms.length} out of ${synonyms.length} available synonyms.`}
       
-      </p>):(<p className="font-cabin">
-        There are <span className="font-black">{synonyms.length}</span>{" "}
-        possible synonyms for this word.
-      </p>)}
-      {matchedSynonyms.length > 0 ? (<div className="flex gap-2 flex-wrap mt-2">
-      {matchedSynonyms.map((synonym, index) => {
+      <Separator className="my-4" />
+      {/* <Hint/> */}
+      <div className="grid grid-cols-3 gap-1">
+      {synonyms.map((synonym, index) => {
+        if(matchedSynonyms.includes(synonym)){
+          return (
+            <p className="font-cabin bg-nymPurple1 text-nymBackground italic text-center py-1 rounded-lg hover:bg-nymPurple1 text-sm">{synonym}</p>
+          );
+        }
         return (
-          <p className="font-cabin bg-nymText text-nymBackground italic px-2 rounded-lg hover:bg-nymPurple1">{synonym}</p>
+          <div key={index} className="bg-nymText text-nymBackground text-center py-1 rounded-lg hover:bg-nymPurple1 text-sm w-full min-h-7"></div>
         );
       })}
-      </div>) : (null)}
+      </div>
       
     </div>
   );
