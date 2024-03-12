@@ -87,7 +87,13 @@ export default function Keyboard({ word }: { word: Word }) {
       setRemainingTime(timer)
       endGame();
     }
-  }, [matchedSynonyms]);
+    if (timer === 0) {
+      clearInterval(timerInterval);
+      setRemainingTime(0)
+      setGameOverMessage("Time's Up!");
+      endGame();
+    }
+  }, [matchedSynonyms, timer]);
 
   const keyboard = {
     letters: [
@@ -145,12 +151,7 @@ export default function Keyboard({ word }: { word: Word }) {
       updateTimer(1);
     }, 1000);
     setTimerInterval(countdownInterval);
-    setTimeout(() => {
-      clearInterval(countdownInterval);
-      setGameOverMessage("Time's Up!");
-      endGame();
-    }, (timer + 1) * 1000);
-  };
+  }
 
   return (
     <>
