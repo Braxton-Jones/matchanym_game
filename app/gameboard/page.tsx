@@ -3,7 +3,7 @@ import Keyboard from "@/components/keyboard";
 import GameContent from "@/components/gamecontent";
 import { GameStoreProvider } from "@/lib/store-provider";
 import Timer from "@/components/timer";
-import {wordsWithSynonyms} from "@/lib/words.js";
+import {wordsWithSynonyms} from "@/lib/words";
 
 export type Word = {
   root: string;
