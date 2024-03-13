@@ -79,7 +79,7 @@ export default function Keyboard({ word }: { word: Word }) {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [input]);
+  }, [input, handleEnter()]);
 
   useEffect(() => {
     if (matchedSynonyms.length === synonyms.length) {
@@ -93,7 +93,7 @@ export default function Keyboard({ word }: { word: Word }) {
       setGameOverMessage("Time's Up!");
       endGame();
     }
-  }, [matchedSynonyms, timer]);
+  }, [matchedSynonyms, timer, endGame, setRemainingTime, timerInterval, synonyms.length, setGameOverMessage]);
 
   const keyboard = {
     letters: [

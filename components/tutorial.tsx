@@ -24,17 +24,17 @@ export default function Tutorial() {
             <ul className=" px-3">
               <li className="mb-4">
                 <p className="text-nymText">
-                  Matchanym is a word game designed to challenge your vocabulary
+                  {`Matchanym is a word game designed to challenge your vocabulary
                   and cognitive skills by matching words with their synonyms.
                   It's an engaging way to expand your linguistic knowledge and
-                  exercise your mind.
+                  exercise your mind.`}
                 </p>
               </li>
               <li className="mb-4">
                 <p className="text-nymText">
-                  To begin, click on the "Ready to Play?" button. You'll be
+                  {`To begin, click on the "Ready to Play?" button. You'll be
                   presented with a word. Your objective is to identify all nine
-                  synonyms for the given word.
+                  synonyms for the given word.`}
                 </p>
               </li>
             </ul>

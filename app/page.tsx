@@ -25,7 +25,7 @@ export default function LandingPage() {
       <section className="mt-6 flex flex-col gap-6 2xl:gap-12 ">
         <div className="flex flex-col gap-2">
           <h3 className="font-montserrat text-lg font-black text-nymText tracking-wide">
-            Introducing Matchanym:
+            {`Introducing Matchanym:`}
           </h3>
           <p className="text-nymText leading-relaxed font-cabin tracking-wide">
             {`Matchanym is a word game that challenges you to match words with
@@ -45,7 +45,7 @@ export default function LandingPage() {
           variant="outline"
           className="font-montserrat font-black bg-nymPurple1 border-0 hover:bg-nymPurple2 text-nymText tracking-wide text-lg hover:text-nymBackground"
         >
-          <Link href="/gameboard">Let's Play !</Link>
+          <Link href="/gameboard">{`Let's Play !`}</Link>
         </Button>
       </section>
       <footer className="w-full bg-nymBackground2 rounded-full">
