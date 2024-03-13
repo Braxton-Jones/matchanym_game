@@ -84,12 +84,12 @@ export default function Keyboard({ word }: { word: Word }) {
   useEffect(() => {
     if (matchedSynonyms.length === synonyms.length) {
       clearInterval(timerInterval);
-      setRemainingTime(timer)
+      setRemainingTime(timer);
       endGame();
     }
     if (timer === 0) {
       clearInterval(timerInterval);
-      setRemainingTime(0)
+      setRemainingTime(0);
       setGameOverMessage("Time's Up!");
       endGame();
     }
@@ -151,7 +151,7 @@ export default function Keyboard({ word }: { word: Word }) {
       updateTimer(1);
     }, 1000);
     setTimerInterval(countdownInterval);
-  }
+  };
 
   return (
     <>

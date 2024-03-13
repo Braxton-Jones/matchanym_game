@@ -3,6 +3,7 @@ import Keyboard from "@/components/keyboard";
 import GameContent from "@/components/gamecontent";
 import { GameStoreProvider } from "@/lib/store-provider";
 import Timer from "@/components/timer";
+import {wordsWithSynonyms} from "@/lib/words.js";
 
 export type Word = {
   root: string;
@@ -12,22 +13,8 @@ export type Word = {
 };
 
 function getWord(): Word {
-  return {
-    root: "Language",
-    part_of_speech: "noun",
-    context_sentence: `The method of human communication, either spoken or written, consisting of the use of words in a structured and conventional way.`,
-    synonyms: [
-      "tongue",
-      "vernacular",
-      "dialect",
-      "communication",
-      "lingo",
-      "vocabulary",
-      "lexicon",
-      "jargon",
-      "expression",
-    ],
-  };
+  const randomIndex = Math.floor(Math.random() * wordsWithSynonyms.length);
+  return wordsWithSynonyms[randomIndex];
 }
 
 export default async function Gameboard() {

@@ -44,11 +44,14 @@ export default function GameOver() {
               <p className="font-montserrat font-bold text-xl">Your Stats</p>
               <Separator className="bg-nymBackground" />
               <div className="flex flex-col gap-2">
-                <p className="font-cabin">{matchedSynonyms.length === 9 ? "You got the all matches!" : ""}</p>
+                <p className="font-cabin">
+                  {matchedSynonyms.length === 9
+                    ? "You got the all matches!"
+                    : ""}
+                </p>
                 <p className="font-cabin ">
                   Words Matched: {matchedSynonyms.length} match
                   {matchedSynonyms.length > 1 ? "es" : ""}.
-
                 </p>
                 <div className="flex gap-1 flex-wrap justify-start">
                   {matchedSynonyms.map((synonym, index) => (

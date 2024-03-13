@@ -21,21 +21,23 @@ export default function Tutorial() {
             How to Play
           </DialogTitle>
           <DialogDescription className="font-cabin text-nymText p-0">
-          <ul className=" px-3">
-  <li className="mb-4">
-    <p className="text-nymText">
-      Matchanym is a word game designed to challenge your vocabulary and cognitive skills by matching words with their synonyms. It's an engaging way to expand your linguistic knowledge and exercise your mind.
-    </p>
-  </li>
-  <li className="mb-4">
-    <p className="text-nymText">
-      To begin, click on the "Ready to Play?" button. You'll be presented with a word. Your objective is to identify all nine synonyms for the given word.
-    </p>
-  </li>
- 
-  
-</ul>
-
+            <ul className=" px-3">
+              <li className="mb-4">
+                <p className="text-nymText">
+                  Matchanym is a word game designed to challenge your vocabulary
+                  and cognitive skills by matching words with their synonyms.
+                  It's an engaging way to expand your linguistic knowledge and
+                  exercise your mind.
+                </p>
+              </li>
+              <li className="mb-4">
+                <p className="text-nymText">
+                  To begin, click on the "Ready to Play?" button. You'll be
+                  presented with a word. Your objective is to identify all nine
+                  synonyms for the given word.
+                </p>
+              </li>
+            </ul>
           </DialogDescription>
           <DialogClose className="bg-nymPurple1 p-1 rounded-md hover:bg-nymPurple2 font-cabin text-lg py-2">
             Close

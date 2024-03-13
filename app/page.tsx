@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 
 export default function LandingPage() {
   return (
-    <div className="w-full max-w-2xl flex items-center flex-col gap-6 h-full">
+    <div className="w-full max-w-xl flex items-center flex-col gap-6 h-full">
       <section>
         <h1 className="text-nymText font-black text-5xl text-center px-4 w-full">
           {`Welcome to your new`}
@@ -31,16 +31,15 @@ export default function LandingPage() {
             {`Matchanym is a word game that challenges you to match words with
       their synonyms. It's a fun way to expand your vocabulary and
       challenge your brain. `}
-      </p>
+          </p>
 
-<p className="text-nymText leading-relaxed font-cabin tracking-wide">
+          <p className="text-nymText leading-relaxed font-cabin tracking-wide">
             {`Matchanym is a word game that challenges you to match words with
       their synonyms. It's a fun way to expand your vocabulary and
       challenge your brain. `}
           </p>
         </div>
 
-        
         <Button
           asChild
           variant="outline"

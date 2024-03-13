@@ -2,8 +2,6 @@
 import React from "react";
 import { useGameStore } from "@/lib/store-provider";
 
-
-
 export default function Timer() {
   const isGameInProgress = useGameStore((state) => state.isGameInProgress);
   const time = useGameStore((state) => state.timer);
