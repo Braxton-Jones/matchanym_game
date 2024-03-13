@@ -93,7 +93,15 @@ export default function Keyboard({ word }: { word: Word }) {
       setGameOverMessage("Time's Up!");
       endGame();
     }
-  }, [matchedSynonyms, timer, endGame, setRemainingTime, timerInterval, synonyms.length, setGameOverMessage]);
+  }, [
+    matchedSynonyms,
+    timer,
+    endGame,
+    setRemainingTime,
+    timerInterval,
+    synonyms.length,
+    setGameOverMessage,
+  ]);
 
   const keyboard = {
     letters: [
