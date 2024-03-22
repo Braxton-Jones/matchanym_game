@@ -21,42 +21,21 @@ export default function Tutorial() {
             How to Play
           </DialogTitle>
           <DialogDescription className="font-cabin text-nymText p-0">
-            <ul className="flex flex-col gap-2">
-              <li className="flex flex-col items-start text-left">
-                <strong className="text-lg text-nymPurple1">
-                  Getting Started:
-                </strong>{" "}
-                When you start playing, you're given a word and its context. You
-                also have to match synonyms for that word.
+            <ul className=" px-3">
+              <li className="mb-4">
+                <p className="text-nymText">
+                  {`Matchanym is a word game designed to challenge your vocabulary
+                  and cognitive skills by matching words with their synonyms.
+                  It's an engaging way to expand your linguistic knowledge and
+                  exercise your mind.`}
+                </p>
               </li>
-              <li className="flex flex-col items-start text-left">
-                <strong className="text-lg text-nymPurple1">
-                  Time's Ticking:
-                </strong>{" "}
-                You've got 2 minutes to match as many synonyms as you can. Every
-                time you match a synonym, you get 5 points and an extra 30
-                seconds added to your timer.
-              </li>
-              <li className="flex flex-col items-start text-left">
-                <strong className="text-lg text-nymPurple1">The Bonus:</strong>{" "}
-                If you manage to match all the synonyms within the given time,
-                you get a bonus! Your points get a nice 1.25x boost.
-              </li>
-              <li className="flex flex-col items-start text-left">
-                <strong className="text-lg text-nymPurple1">
-                  Watch the Clock:
-                </strong>{" "}
-                If the timer runs out before you've matched all the synonyms,
-                game over. Make sure you match quickly!
-              </li>
-              <li className="flex flex-col items-start text-left">
-                <strong className="text-lg text-nymPurple1">Game Over:</strong>{" "}
-                When the game ends, you're given your final score. This score is
-                added to the leaderboard for all players to see.
-              </li>
-              <li className="flex flex-col items-start text-left">
-                <strong className="text-lg text-nymPurple1">Once a Day:</strong>{" "}
-                You can only play once a day, so make it count!
+              <li className="mb-4">
+                <p className="text-nymText">
+                  {`To begin, click on the "Ready to Play?" button. You'll be
+                  presented with a word. Your objective is to identify all nine
+                  synonyms for the given word.`}
+                </p>
               </li>
             </ul>
           </DialogDescription>

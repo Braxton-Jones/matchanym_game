@@ -79,15 +79,29 @@ export default function Keyboard({ word }: { word: Word }) {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [input]);
+  }, [input, handleEnter()]);
 
   useEffect(() => {
     if (matchedSynonyms.length === synonyms.length) {
       clearInterval(timerInterval);
-      setRemainingTime(timer)
+      setRemainingTime(timer);
       endGame();
     }
-  }, [matchedSynonyms]);
+    if (timer === 0) {
+      clearInterval(timerInterval);
+      setRemainingTime(0);
+      setGameOverMessage("Time's Up!");
+      endGame();
+    }
+  }, [
+    matchedSynonyms,
+    timer,
+    endGame,
+    setRemainingTime,
+    timerInterval,
+    synonyms.length,
+    setGameOverMessage,
+  ]);
 
   const keyboard = {
     letters: [
@@ -145,11 +159,6 @@ export default function Keyboard({ word }: { word: Word }) {
       updateTimer(1);
     }, 1000);
     setTimerInterval(countdownInterval);
-    setTimeout(() => {
-      clearInterval(countdownInterval);
-      setGameOverMessage("Time's Up!");
-      endGame();
-    }, (timer + 1) * 1000);
   };
 
   return (
